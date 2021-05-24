@@ -47,7 +47,16 @@ func main() {
 		AllowCredentials: true, //允许cookie
 	}))
 	//注册模型
+	gob.Register(models.Administrator{})
+	//关闭数据库
+	defer models.DB.Close()
+	//配置 Redis 用于储存session
+	beego.BConfig.WebConfig.Session.SessionProvider = "redis"
+	//docker-compose 请设置为redisServiceHost
+	//beego.BConfig.WebConfig.Session.SessionProviderConfig="redisServiceHost:6379"
 
+	//本地启动，设置如下
+	beego.BConfig.WebConfig.Session.SessionProviderConfig = "127.0.0.1:6379"
 	beego.Run()
 }
 
