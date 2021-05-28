@@ -1,10 +1,11 @@
 package main
 
 import (
+	"beego/common"
+	"beego/models"
+	_ "beego/routers"
 	"encoding/gob"
-	"gitee.com/shirdonl/LeastMall/common"
-	"gitee.com/shirdonl/LeastMall/models"
-	_ "gitee.com/shirdonl/LeastMall/routers"
+
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/plugins/cors"
 	_ "github.com/astaxie/beego/session/redis"

@@ -9,20 +9,17 @@ import (
 var DB *gorm.DB
 var err error
 
-func init()  {
+func init() {
 	mysqladmin := beego.AppConfig.String("mysqladmin")
 	mysqlpwd := beego.AppConfig.String("mysqlpwd")
 	mysqldb := beego.AppConfig.String("mysqldb")
-
-	DB,err =
-		gorm.Open("mysql",mysqladmin + ":" +mysqlpwd+"@/"+mysqldb+"?charset=utf8"+"&parseTime=True&loc=Local")
-
+	DB, err =
+		gorm.Open("mysql", mysqladmin+":"+mysqlpwd+"@/"+mysqldb+"?charset=utf8"+
+			"&parseTime=True&loc=Local")
 	if err != nil {
 		beego.Error(err)
-		beego.Error("数据库连接失败")
-
-	}else {
-		beego.Info("连接Mysql数据库成功")
+		beego.Error("连接MySql数据库失败")
+	} else {
+		beego.Info("连接MySql数据库成功")
 	}
-
 }
